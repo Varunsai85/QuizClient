@@ -7,28 +7,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-            prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.varun.quizclient.controller.AuthController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.varun.quizclient.controller.AuthController">
     <center>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
                 <Label text="Quiz Time" textFill="WHITE">
                     <font>
-                        <Font size="66.0"/>
+                        <Font size="66.0" />
                     </font>
                 </Label>
                 <VBox>
                     <children>
-                        <Label text="Username or Email" textFill="WHITE">
+                        <Label alignment="CENTER" text="Email" textFill="WHITE">
                             <font>
-                                <Font size="24.0"/>
+                                <Font size="24.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="logInField" prefHeight="50.0" prefWidth="1036.0"
-                                   promptText="Username or Email">
+                        <TextField fx:id="emailField" prefHeight="50.0" prefWidth="1036.0" promptText="Email">
                             <font>
-                                <Font size="24.0"/>
+                                <Font size="24.0" />
                             </font>
                         </TextField>
                     </children>
@@ -37,52 +34,44 @@
                     <children>
                         <HBox alignment="BOTTOM_LEFT">
                             <children>
-                                <Label alignment="CENTER" text="Password" textFill="WHITE">
+                                <Label alignment="CENTER" text="Verification Code" textFill="WHITE">
                                     <font>
-                                        <Font size="24.0"/>
+                                        <Font size="24.0" />
                                     </font>
                                 </Label>
-                                <Region HBox.hgrow="ALWAYS"/>
-                                <Hyperlink alignment="CENTER" contentDisplay="CENTER" text="Forgot Password?"
-                                           underline="true">
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Hyperlink onAction="#resendNavigate" text="Resend Code?" underline="true">
                                     <font>
-                                        <Font size="24.0"/>
+                                        <Font size="24.0" />
                                     </font>
                                 </Hyperlink>
                             </children>
                         </HBox>
-                        <PasswordField fx:id="passwordField" prefHeight="50.0" prefWidth="1036.0" promptText="Password">
+                        <PasswordField fx:id="codeField" prefHeight="50.0" prefWidth="1036.0" promptText="Code">
                             <font>
-                                <Font size="24.0"/>
+                                <Font size="24.0" />
                             </font>
                         </PasswordField>
                     </children>
                 </VBox>
                 <Label fx:id="errorLabel" textFill="WHITE">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                 </Label>
-                <Button mnemonicParsing="false" onAction="#onLogInClick" style="-fx-background-color: blue;"
-                        text="Log In" textFill="WHITE">
+                <Button mnemonicParsing="false" onAction="#onEmailVerificationClick" style="-fx-background-color: blue;" text="Verify" textFill="WHITE">
                     <font>
-                        <Font size="37.0"/>
+                        <Font size="37.0" />
                     </font>
                 </Button>
-                <Hyperlink layoutX="346.0" layoutY="708.0" onAction="#signUpNavigate"
-                           text="Don't have an account? Create one" underline="true">
+                <Hyperlink layoutX="346.0" layoutY="708.0" onAction="#signUpNavigate" text="Don't have an account? Create one" underline="true">
                     <font>
-                        <Font size="24.0"/>
-                    </font>
-                </Hyperlink>
-                <Hyperlink onAction="#verifyNavigate" text="Verify Account" underline="true">
-                    <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Hyperlink>
             </children>
             <padding>
-                <Insets left="100.0" right="100.0"/>
+                <Insets left="100.0" right="100.0" />
             </padding>
         </VBox>
     </center>
@@ -91,7 +80,7 @@
             <children>
                 <ImageView fitHeight="340.0" fitWidth="549.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/QuizLogo.png"/>
+                        <Image url="@../images/QuizLogo.png" />
                     </image>
                 </ImageView>
             </children>

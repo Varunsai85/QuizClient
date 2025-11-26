@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.varun.quizclient.controller.AuthController">
+    <center>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Quiz Time" textFill="WHITE">
+                    <font>
+                        <Font size="66.0" />
+                    </font>
+                </Label>
+                <VBox>
+                    <children>
+                          <Label alignment="CENTER" text="Email" textFill="WHITE">
+                              <font>
+                                  <Font size="24.0" />
+                              </font>
+                          </Label>
+                  <TextField fx:id="emailField" prefHeight="50.0" prefWidth="1036.0" promptText="Email">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+                    </children>
+                </VBox>
+                <Label fx:id="errorLabel" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Button mnemonicParsing="false" onAction="#onResendClick" style="-fx-background-color: blue;" text="Resend" textFill="WHITE">
+                    <font>
+                        <Font size="37.0" />
+                    </font>
+                </Button>
+                <Hyperlink layoutX="346.0" layoutY="708.0" onAction="#signUpNavigate" text="Don't have an account? Create one" underline="true">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Hyperlink>
+            </children>
+            <padding>
+                <Insets left="100.0" right="100.0" />
+            </padding>
+        </VBox>
+    </center>
+    <left>
+        <VBox alignment="CENTER" prefHeight="800.0" prefWidth="563.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="340.0" fitWidth="549.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/QuizLogo.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </VBox>
+    </left>
+</BorderPane>

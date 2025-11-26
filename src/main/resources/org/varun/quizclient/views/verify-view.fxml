@@ -20,38 +20,22 @@
                 </Label>
                 <VBox>
                     <children>
-                        <Label text="Username or Email" textFill="WHITE">
-                            <font>
-                                <Font size="24.0"/>
-                            </font>
-                        </Label>
-                        <TextField fx:id="logInField" prefHeight="50.0" prefWidth="1036.0"
-                                   promptText="Username or Email">
-                            <font>
-                                <Font size="24.0"/>
-                            </font>
-                        </TextField>
-                    </children>
-                </VBox>
-                <VBox>
-                    <children>
                         <HBox alignment="BOTTOM_LEFT">
                             <children>
-                                <Label alignment="CENTER" text="Password" textFill="WHITE">
+                                <Label alignment="CENTER" text="Verification Code" textFill="WHITE">
                                     <font>
                                         <Font size="24.0"/>
                                     </font>
                                 </Label>
                                 <Region HBox.hgrow="ALWAYS"/>
-                                <Hyperlink alignment="CENTER" contentDisplay="CENTER" text="Forgot Password?"
-                                           underline="true">
+                                <Hyperlink onAction="#resendNavigate" text="Resend Code?" underline="true">
                                     <font>
                                         <Font size="24.0"/>
                                     </font>
                                 </Hyperlink>
                             </children>
                         </HBox>
-                        <PasswordField fx:id="passwordField" prefHeight="50.0" prefWidth="1036.0" promptText="Password">
+                        <PasswordField fx:id="codeField" prefHeight="50.0" prefWidth="1036.0" promptText="Code">
                             <font>
                                 <Font size="24.0"/>
                             </font>
@@ -63,19 +47,14 @@
                         <Font size="18.0"/>
                     </font>
                 </Label>
-                <Button mnemonicParsing="false" onAction="#onLogInClick" style="-fx-background-color: blue;"
-                        text="Log In" textFill="WHITE">
+                <Button mnemonicParsing="false" onAction="#onVerificationClick" style="-fx-background-color: blue;"
+                        text="Verify" textFill="WHITE">
                     <font>
                         <Font size="37.0"/>
                     </font>
                 </Button>
                 <Hyperlink layoutX="346.0" layoutY="708.0" onAction="#signUpNavigate"
                            text="Don't have an account? Create one" underline="true">
-                    <font>
-                        <Font size="24.0"/>
-                    </font>
-                </Hyperlink>
-                <Hyperlink onAction="#verifyNavigate" text="Verify Account" underline="true">
                     <font>
                         <Font size="24.0"/>
                     </font>
