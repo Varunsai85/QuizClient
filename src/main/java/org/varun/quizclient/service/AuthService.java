@@ -2,46 +2,40 @@ package org.varun.quizclient.service;
 
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class AuthService {
 
     private static String jwtToken;
 
     public String login(String login, String password) throws Exception {
-        URL url = new URL("http://localhost:8080/api/auth/sign-in");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/json");
-        conn.setDoOutput(true);
+        HttpClient client=HttpClient.newHttpClient();
 
         JSONObject body = new JSONObject();
         body.put("login", login);
         body.put("password", password);
 
-        try (OutputStream os = conn.getOutputStream()) {
-            os.write(body.toString().getBytes());
-        }
+        HttpRequest request=HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/auth/sign-in"))
+                .header("Content-Type","Application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(body.toString()))
+                .build();
 
-        StringBuilder response = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getResponseCode() >= 400 ? conn.getErrorStream() : conn.getInputStream()))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                response.append(line);
-            }
-        }
-        JSONObject json=new JSONObject(response.toString());
+        HttpResponse<String> response=client.send(request,HttpResponse.BodyHandlers.ofString());
 
+        JSONObject json=new JSONObject(response.body());
         String message=json.getString("message");
 
-        if(conn.getResponseCode()==200){
+        if(response.statusCode()==200){
             jwtToken=json.getString("data");
             return message;
+        }
+
+        if(message.contains(":")){
+            message=message.split(":",2)[1].trim();
         }
 
         throw new Exception(message);
