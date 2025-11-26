@@ -16,30 +16,56 @@
                         <Font size="66.0" />
                     </font>
                 </Label>
-                <TextField fx:id="logInField" prefHeight="50.0" prefWidth="1036.0" promptText="Username or Email">
-                    <font>
-                        <Font size="37.0" />
-                    </font></TextField>
-                <PasswordField fx:id="passwordField" layoutX="110.0" layoutY="483.0" prefHeight="50.0" prefWidth="1036.0" promptText="Password">
-                    <font>
-                        <Font size="37.0" />
-                    </font></PasswordField>
+            <VBox>
+               <children>
+                  <Label text="Username or Email" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                      <TextField fx:id="logInField" prefHeight="50.0" prefWidth="1036.0" promptText="Username or Email">
+                          <font>
+                              <Font size="24.0" />
+                          </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <HBox alignment="BOTTOM_LEFT">
+                     <children>
+                        <Label alignment="CENTER" text="Password" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                            <Hyperlink alignment="CENTER" contentDisplay="CENTER" text="Forgot Password?" underline="true">
+                                <font>
+                                    <Font size="24.0" />
+                                </font>
+                        </Hyperlink>
+                     </children>
+                  </HBox>
+                      <PasswordField fx:id="passwordField" prefHeight="50.0" prefWidth="1036.0" promptText="Password">
+                          <font>
+                              <Font size="24.0" />
+                          </font>
+                  </PasswordField>
+               </children>
+            </VBox>
             <Label fx:id="errorLabel" textFill="WHITE">
                <font>
-                  <Font size="36.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
                 <Button fx:id="logInButton" mnemonicParsing="false" onAction="#onLogInClick" style="-fx-background-color: blue;" text="Log In" textFill="WHITE">
                     <font>
                         <Font size="37.0" />
                     </font></Button>
-                <Hyperlink text="Forgot Password?" underline="true">
-                    <font>
-                        <Font size="37.0" />
-                    </font></Hyperlink>
             <Hyperlink layoutX="346.0" layoutY="708.0" onAction="#signUpNavigate" text="Don't have an account? Create one" underline="true">
                <font>
-                  <Font size="37.0" />
+                  <Font size="24.0" />
                </font>
             </Hyperlink>
             </children>
@@ -53,7 +79,7 @@
             <children>
                 <ImageView fitHeight="340.0" fitWidth="549.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/QuizLogo.png"/>
+                        <Image url="@../images/QuizLogo.png" />
                     </image>
                 </ImageView>
             </children>
