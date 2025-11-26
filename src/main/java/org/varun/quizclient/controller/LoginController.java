@@ -5,29 +5,31 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.varun.quizclient.service.AuthService;
 
 public class LoginController {
     @FXML
     private Label titleLabel;
     @FXML
-    private TextField username;
+    private TextField logInField;
     @FXML
-    private PasswordField password;
+    private PasswordField passwordField;
     @FXML
     private Button logInButton;
     @FXML
     private Label errorLabel;
 
+    private final AuthService authService=new AuthService();
+
     @FXML
     public void onLoginClick() {
-        if (username.getText().equals("varun") && password.getText().equals("123")) {
-            System.out.printf("User %s logged in successfully", username.getText());
-            errorLabel.setText("Login Successful");
+        try {
+            String message= authService.login(logInField.getText(),passwordField.getText());
             errorLabel.setStyle("-fx-text-fill: green");
-        } else {
-            System.out.printf("User %s log in failed", username.getText());
-            errorLabel.setText("Wrong credentials");
+            errorLabel.setText(message);
+        } catch (Exception e) {
             errorLabel.setStyle("-fx-text-fill: red");
+            errorLabel.setText(e.getMessage());
         }
     }
 }
