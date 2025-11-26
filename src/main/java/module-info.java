@@ -3,6 +3,6 @@ module org.varun.quizclient {
     requires javafx.fxml;
 
 
-    opens org.varun.quizclient to javafx.fxml;
+    opens org.varun.quizclient.controller to javafx.fxml;
     exports org.varun.quizclient;
 }
