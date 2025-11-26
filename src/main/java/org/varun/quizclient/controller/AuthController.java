@@ -18,6 +18,8 @@ public class AuthController {
     private PasswordField passwordField;
     @FXML
     private Label errorLabel;
+    @FXML
+    private TextField codeField;
 
     private final AuthService authService = new AuthService();
     private final HelloApplication ha = new HelloApplication();
@@ -26,11 +28,9 @@ public class AuthController {
     public void onLogInClick() {
         try {
             String message = authService.logIn(logInField.getText(), passwordField.getText());
-            errorLabel.setStyle("-fx-text-fill: green");
-            errorLabel.setText(message);
+            greenErrorLabel(message);
         } catch (Exception e) {
-            errorLabel.setStyle("-fx-text-fill: red");
-            errorLabel.setText(e.getMessage());
+            redErrorLabel(e.getMessage());
         }
     }
 
@@ -38,11 +38,43 @@ public class AuthController {
     public void onSignUpClick() {
         try {
             String message = authService.signUp(usernameField.getText(), emailField.getText(), passwordField.getText());
-            errorLabel.setStyle("-fx-text-fill: green");
-            errorLabel.setText(message);
+            greenErrorLabel(message);
+            ha.changeScene("views/verify-view.fxml");
         } catch (Exception e) {
-            errorLabel.setStyle("-fx-text-fill: red");
-            errorLabel.setText(e.getMessage());
+            redErrorLabel(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void onVerificationClick() {
+        try {
+            String message = authService.verification(codeField.getText());
+            greenErrorLabel(message);
+            ha.changeScene("views/login-view.fxml");
+        } catch (Exception e) {
+            redErrorLabel(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void onEmailVerificationClick() {
+        try {
+            String message = authService.emailVerification(emailField.getText(), codeField.getText());
+            greenErrorLabel(message);
+            ha.changeScene("views/login-view.fxml");
+        } catch (Exception e) {
+            redErrorLabel(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void onResendClick() {
+        try {
+            String message = authService.resendVerificationCode(emailField.getText());
+            greenErrorLabel(message);
+            ha.changeScene("views/verify-view.fxml");
+        } catch (Exception e) {
+            redErrorLabel(e.getMessage());
         }
     }
 
@@ -54,5 +86,25 @@ public class AuthController {
     @FXML
     public void logInNavigate() throws IOException {
         ha.changeScene("views/login-view.fxml");
+    }
+
+    @FXML
+    public void resendNavigate() throws IOException {
+        ha.changeScene("views/resend-view.fxml");
+    }
+
+    @FXML
+    private void verifyNavigate() throws IOException {
+        ha.changeScene("views/verify-view.fxml");
+    }
+
+    private void greenErrorLabel(String message) {
+        errorLabel.setStyle("-fx-text-fill: green");
+        errorLabel.setText(message);
+    }
+
+    private void redErrorLabel(String message) {
+        errorLabel.setStyle("-fx-text-fill: red");
+        errorLabel.setText(message);
     }
 }
