@@ -12,17 +12,17 @@ public class AuthService {
 
     private static String jwtToken;
 
-    private HttpRequest generatePostRequest(String uri,JSONObject body){
+    private HttpRequest generatePostRequest(String uri, JSONObject body) {
         return HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/api/auth/"+uri))
-                .header("Content-Type","Application/json")
+                .uri(URI.create("http://localhost:8080/api/auth/" + uri))
+                .header("Content-Type", "Application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(body.toString()))
                 .build();
     }
 
     private HttpResponse<String> getResponse(HttpRequest request) throws IOException, InterruptedException {
-        HttpClient client=HttpClient.newHttpClient();
-        return client.send(request,HttpResponse.BodyHandlers.ofString());
+        HttpClient client = HttpClient.newHttpClient();
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
     public String logIn(String login, String password) throws Exception {
@@ -30,47 +30,47 @@ public class AuthService {
         body.put("login", login);
         body.put("password", password);
 
-        HttpRequest request=generatePostRequest("sign-in",body);
+        HttpRequest request = generatePostRequest("sign-in", body);
 
-        HttpResponse<String> response=getResponse(request);
+        HttpResponse<String> response = getResponse(request);
 
-        JSONObject json=new JSONObject(response.body());
-        String message=json.getString("message");
+        JSONObject json = new JSONObject(response.body());
+        String message = json.getString("message");
 
-        if(response.statusCode()==200){
-            jwtToken=json.getString("data");
+        if (response.statusCode() == 200) {
+            jwtToken = json.getString("data");
             return message;
         }
 
-        if(message.contains(":")){
-            message=message.split(":",2)[1].trim();
+        if (message.contains(":")) {
+            message = message.split(":", 2)[1].trim();
         }
 
         throw new Exception(message);
     }
 
-    public String signUp(String username,String email,String password) throws Exception {
-        JSONObject body=new JSONObject();
-        body.put("username",username);
-        body.put("email",email);
-        body.put("password",password);
+    public String signUp(String username, String email, String password) throws Exception {
+        JSONObject body = new JSONObject();
+        body.put("username", username);
+        body.put("email", email);
+        body.put("password", password);
 
-        HttpRequest request=generatePostRequest("sign-up",body);
-        HttpResponse<String> response=getResponse(request);
+        HttpRequest request = generatePostRequest("sign-up", body);
+        HttpResponse<String> response = getResponse(request);
 
-        JSONObject json=new JSONObject(response.body());
-        String message=json.getString("message");
+        JSONObject json = new JSONObject(response.body());
+        String message = json.getString("message");
 
-        if(response.statusCode()==201){
+        if (response.statusCode() == 201) {
             return message;
         }
-        if(message.contains(":")){
-            message=message.split(":",2)[1].trim();
+        if (message.contains(":")) {
+            message = message.split(":", 2)[1].trim();
         }
         throw new Exception(message);
     }
 
-    public static String getJwtToken(){
+    public static String getJwtToken() {
         return jwtToken;
     }
 }

@@ -11,9 +11,10 @@ import java.util.Objects;
 
 public class HelloApplication extends Application {
     private static Stage stg;
+
     @Override
     public void start(Stage stage) throws IOException {
-        stg=stage;
+        stg = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
         stage.setTitle("Hello!");
@@ -21,8 +22,8 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public void changeScene(String fxml) throws IOException{
-        Parent parent=FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
+    public void changeScene(String fxml) throws IOException {
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
         stg.getScene().setRoot(parent);
     }
 }
