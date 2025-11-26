@@ -51,7 +51,7 @@
                         <Font size="36.0"/>
                     </font>
                 </Label>
-                <Button fx:id="signUpButton" mnemonicParsing="false" style="-fx-background-color: blue;" text="Sign Up"
+                <Button fx:id="signUpButton" onAction="#onSignUpClick" mnemonicParsing="false" style="-fx-background-color: blue;" text="Sign Up"
                         textFill="WHITE">
                     <font>
                         <Font size="37.0"/>

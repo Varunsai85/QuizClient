@@ -35,7 +35,19 @@ public class AuthController {
     @FXML
     public void onLogInClick() {
         try {
-            String message= authService.login(logInField.getText(),passwordField.getText());
+            String message= authService.logIn(logInField.getText(),passwordField.getText());
+            errorLabel.setStyle("-fx-text-fill: green");
+            errorLabel.setText(message);
+        } catch (Exception e) {
+            errorLabel.setStyle("-fx-text-fill: red");
+            errorLabel.setText(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void onSignUpClick(){
+        try {
+            String message=authService.signUp(usernameField.getText(),emailField.getText(),passwordField.getText());
             errorLabel.setStyle("-fx-text-fill: green");
             errorLabel.setText(message);
         } catch (Exception e) {
